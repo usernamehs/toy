@@ -28,25 +28,14 @@ import datetime
 
 # Create your views here.
 
-# 방명록 작성 기능 (POST)
+# 방명록 작성 기능
 # 제목, 작성자, 내용, 게시글 비밀번호 입력받기
-class GuestBookPost(generics.CreateAPIView):
-    queryset = GuestBook.objects.all()
-    serializer_class = GuestBookSerializer
-
-
-# 방명록 조회 기능 (GET)
-class GuestBookGet(generics.RetrieveAPIView):
-    queryset = GuestBook.objects.all()
-    serializer_class = GuestBookSerializer
-    lookup_feild = 'pk'
-
-
-# 방명록 삭제 기능 (DELETE)
+# 방명록 삭제 기능
 # 올바른 게시글 비밀번호를 입력하면 삭제 가능
-class GuestBookDelete(generics.DestroyAPIView):
+class GuestBookDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = GuestBook.objects.all()
     serializer_class = GuestBookSerializer
+    lookup_field = 'pk'
 
     def destroy(self, request, *args, **kargs):
         instance = self.get_object()
@@ -61,16 +50,12 @@ class GuestBookDelete(generics.DestroyAPIView):
 
 # 방명록 리스트 기능
 # 방명록 보여주기
-class GuestBookList(generics.ListAPIView):
-    queryset = GuestBook.objects.all()
-    serializer_class = GuestBookSerializer
-
-# 방명록 시간 순 정렬
-# class GuestBookListSort(generics.RetrieveAPIView):
-#     queryset = GuestBook.objects.order_by('-created_at')
+# class GuestBookList(generics.ListAPIView):
+#     queryset = GuestBook.objects.all()
 #     serializer_class = GuestBookSerializer
 
-class GuestBookListSort(generics.ListAPIView):
+# 방명록 시간 순 정렬
+class GuestBookList(generics.ListCreateAPIView):
     serializer_class = GuestBookSerializer
 
     def get_queryset(self):
