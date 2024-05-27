@@ -82,6 +82,8 @@ MIDDLEWARE = [
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [ 
+    "http://likelion12thtoy.kro.kr:8000/guestbook/"
+    "https://likelion12thtoy.kro.kr:8000/guestbook/"
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
@@ -142,7 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
